@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ngx-cardnet": {
+      "hosting": {
+        "demo": [
+          "ngx-cardnet"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ngx-cardnet"
+  }
+}

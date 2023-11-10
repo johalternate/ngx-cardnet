@@ -50,11 +50,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/demo",
             "index": "projects/demo/src/index.html",
-            "browser": "projects/demo/src/main.ts",
+            "main": "projects/demo/src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "projects/demo/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -120,6 +120,13 @@
             ],
             "styles": ["projects/demo/src/styles.scss"],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2,
+            "browserTarget": "demo:build:production"
           }
         }
       }
