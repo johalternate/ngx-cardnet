@@ -56,8 +56,6 @@ export class CardnetService {
   openCaptureIFrame(uuid: string) {
     const url = `${this.environment}/servicios/tokens/v1/Capture/`;
     const params = `?key=${this.publicKey}&session_id=${uuid}`;
-    this.zone.runOutsideAngular(() =>
-      PWCheckout.OpenIframeCustom(url + params, uuid)
-    );
+    PWCheckout.OpenIframeCustom(url + params, uuid);
   }
 }
