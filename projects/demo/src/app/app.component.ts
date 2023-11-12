@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AddCardCmp } from './add-card/add-card.component';
 import { AddCustomerCmp } from './add-customer/add-customer.component';
 import { HeaderCmp } from './components/header/header.cmp';
 import { RouterOutlet } from '@angular/router';
+import { AppCheck, getToken } from '@angular/fire/app-check';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19,4 +20,10 @@ import { RouterOutlet } from '@angular/router';
     </div>
   `,
 })
-export class AppComponent {}
+export class AppComponent {
+  appCheck = inject(AppCheck);
+
+  ngOnInit() {
+    getToken(this.appCheck, true);
+  }
+}

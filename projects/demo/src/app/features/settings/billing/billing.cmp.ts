@@ -39,13 +39,15 @@ import { CaptureButton } from '../../../../../../ngx-cardnet/src/public-api';
     </div>
     <hr />
     <div class="accordion accordion-flush" id="card-list">
-      @for (profile of profiles(); track $index) {
+      @defer (when profiles()) { @for (profile of profiles(); track $index) {
       <div class="p-4">
         <payment-profile
           [data]="profile"
           (delete)="deletePaymentProfile(profile)"
         />
       </div>
+      } } @placeholder (minimum 5000ms) {
+      <h1>LOADING</h1>
       }
     </div>
   `,

@@ -1,6 +1,7 @@
 import { setGlobalOptions } from 'firebase-functions/v2/options';
+import { config } from './config';
 
-setGlobalOptions({ maxInstances: 2 });
+setGlobalOptions(config);
 
 export * from './add-customer';
 export * from './get-customer';
