@@ -71,14 +71,16 @@ import { CaptureButton } from '../../../../../../ngx-cardnet/src/public-api';
 export class BillingSettingsCmp {
   @ViewChild('deleteDialog') deleteDialog?: ElementRef<HTMLDialogElement>;
 
-  data = inject(BillingDataService);
+  readonly data = inject(BillingDataService);
 
-  cardnetUser = toSignal(this.data.cardnetCustomerData$);
+  readonly cardnetUser = toSignal(this.data.cardnetCustomerData$);
 
-  selectedProfile = signal<PaymentProfile | null>(null);
+  readonly selectedProfile = signal<PaymentProfile | null>(null);
 
-  profiles = computed(() => this.cardnetUser()?.payload.PaymentProfiles);
-  cuid = computed(() => this.cardnetUser()?.payload.UniqueID);
+  readonly profiles = computed(
+    () => this.cardnetUser()?.payload.PaymentProfiles
+  );
+  readonly cuid = computed(() => this.cardnetUser()?.payload.UniqueID);
 
   deletePaymentProfile(profile: PaymentProfile) {
     this.data.deletePaymentProfile$.next(profile.PaymentProfileId);

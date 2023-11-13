@@ -13,12 +13,14 @@ import {
 } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-interface CustomerResponse {
+type GetCustomerRequest = number;
+interface GetCustomerResponse {
   payload: Customer;
   errors: unknown[];
 }
 
-interface DeleteRequest {
+type DeletePaymentProfileResponse = GetCustomerResponse;
+interface DeletePaymentProfileRequest {
   customerId: number;
   profileId: number;
 }
@@ -71,13 +73,13 @@ export class BillingDataService {
     this.error$.pipe(takeUntilDestroyed()).subscribe((err) => console.log(err));
   }
 
-  readonly getCustomerData = httpsCallable<number, CustomerResponse>(
-    this.functions,
-    'getCustomer'
-  );
+  readonly getCustomerData = httpsCallable<
+    GetCustomerRequest,
+    GetCustomerResponse
+  >(this.functions, 'getCustomer');
 
   readonly deletePaymentProfile = httpsCallable<
-    DeleteRequest,
-    CustomerResponse
+    DeletePaymentProfileRequest,
+    DeletePaymentProfileResponse
   >(this.functions, 'deletePaymentProfile');
 }
