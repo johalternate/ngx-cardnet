@@ -10,7 +10,7 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BillingDataService } from '../../../core/data-access/billing.service';
 import { PaymentProfileCmp } from '../ui/payment-profile/payment-profile.cmp';
-import { PaymentProfile } from '../../../../../../../functions/src/models';
+import { PaymentProfile } from '../../../../../../../functions/src/models/models';
 import { CaptureButton } from '../../../../../../ngx-cardnet/src/public-api';
 
 @Component({
@@ -81,7 +81,7 @@ export class BillingSettingsCmp {
   cuid = computed(() => this.cardnetUser()?.payload.UniqueID);
 
   deletePaymentProfile(profile: PaymentProfile) {
-    this.data.delete$.next(profile.PaymentProfileId);
+    this.data.deletePaymentProfile$.next(profile.PaymentProfileId);
   }
 
   refreshProfiles() {

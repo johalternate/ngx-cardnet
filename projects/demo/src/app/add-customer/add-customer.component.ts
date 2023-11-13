@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import {
   CreateCustomerDTO,
   Customer,
-} from '../../../../../functions/src/models';
+} from '../../../../../functions/src/models/models';
 import { Functions, httpsCallable } from '@angular/fire/functions';
 
 @Component({

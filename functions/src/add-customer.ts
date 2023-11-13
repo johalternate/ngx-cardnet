@@ -1,7 +1,7 @@
 import { onCall } from 'firebase-functions/v2/https';
 import axios from 'axios';
 import { CUSTOMER_URL, PRIVATE_KEY } from './constants';
-import { Customer } from './models';
+import { Customer } from './models/models';
 
 export const addCustomer = onCall<Partial<Customer>>(async (request) => {
   const customer = request.data;

@@ -7,12 +7,13 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { PaymentProfile } from '../../../../../../../../functions/src/models/models';
 
 @Component({
   selector: 'payment-profile',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   template: `
     <div class="w-100 d-flex justify-content-between align-items-center">
       <div class="d-flex align-items-center">
@@ -29,7 +30,7 @@ import { PaymentProfile } from '../../../../../../../../functions/src/models/mod
         <span class="mx-2 text-nowrap"> ●●●● ●●●● ●●●● {{ data.Last4 }} </span>
 
         <!-- CARD EXPIRATION DATE -->
-        <div class="mx-2 mx-sm-4">
+        <div class="mx-4">
           {{ data.Expiration.substring(4, 6) }}/{{
             data.Expiration.substring(2, 4)
           }}
@@ -37,7 +38,7 @@ import { PaymentProfile } from '../../../../../../../../functions/src/models/mod
       </div>
 
       <!-- CARD OWNER -->
-      <div class="mx-4 text-end align-middle d-none d-sm-block">
+      <div class="px-4 text-end align-middle">
         <span class="text-nowrap">{{ data.CardOwner }}</span>
       </div>
 

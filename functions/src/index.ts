@@ -5,3 +5,4 @@ setGlobalOptions(config);
 
 export * from './add-customer';
 export * from './get-customer';
+export * from './delete-payment-profile';
