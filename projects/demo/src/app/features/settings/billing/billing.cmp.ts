@@ -12,17 +12,18 @@ import { BillingDataService } from '../../../core/data-access/billing.service';
 import { PaymentProfileCmp } from '../ui/payment-profile/payment-profile.cmp';
 import { PaymentProfile } from '../../../../../../../functions/src/models';
 import { CaptureButton } from '../../../../../../ngx-cardnet/src/public-api';
-import { PaymentProfilePlaceholderCmp } from '../ui/payment-profile-placeholder/payment-profile-placeholder.cmp';
 
 @Component({
   selector: 'billing-settings',
   standalone: true,
-  imports: [PaymentProfileCmp, PaymentProfilePlaceholderCmp, CaptureButton],
+  imports: [PaymentProfileCmp, CaptureButton],
   template: `
     <div class="mt-4 d-flex justify-content-between align-items-center">
       <div>
         <h4>Payment Methods</h4>
-        <p>Add, deactivate or remove your cards at will.</p>
+        <p class="d-none d-md-block">
+          Add, deactivate or remove your cards at will.
+        </p>
       </div>
       <div>
         <button
@@ -38,11 +39,11 @@ import { PaymentProfilePlaceholderCmp } from '../ui/payment-profile-placeholder/
       </div>
     </div>
     <hr />
-    <div class="accordion accordion-flush" id="card-list">
+    <div class="" id="card-list">
       @defer (when profiles()) {
       <!---->
       @for (profile of profiles(); track $index) {
-      <div class="p-4">
+      <div class="py-2 px-1 px-md-4">
         <payment-profile
           [data]="profile"
           (delete)="deletePaymentProfile(profile)"

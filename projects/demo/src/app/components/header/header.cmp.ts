@@ -6,9 +6,9 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <header class="navbar sticky-top container">
-      <div class="navbar-brand fs-1 fw-bold" style="padding-left: 12px;">
-        Cool Stuff Store
+    <header class="navbar bg-dark text-light" data-bs-theme="dark">
+      <div class="container">
+        <div class="navbar-brand fs-1 fw-bold">Cool Stuff Store</div>
       </div>
     </header>
   `,

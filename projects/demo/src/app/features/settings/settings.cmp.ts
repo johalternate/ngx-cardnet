@@ -13,8 +13,8 @@ import { RouterOutlet } from '@angular/router';
       <p>Manage your preferences here.</p>
       <hr />
       <div class="row">
-        <aside class="col-4"><settings-nav /></aside>
-        <main class="col-8"><router-outlet /></main>
+        <aside class="col-12 col-md-4"><settings-nav /></aside>
+        <main class="col-12 col-md-8"><router-outlet /></main>
       </div>
     </section>
   `,

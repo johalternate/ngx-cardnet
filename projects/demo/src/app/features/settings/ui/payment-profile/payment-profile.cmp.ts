@@ -29,7 +29,7 @@ import { PaymentProfile } from '../../../../../../../../functions/src/models';
         <span class="mx-2 text-nowrap"> ●●●● ●●●● ●●●● {{ data.Last4 }} </span>
 
         <!-- CARD EXPIRATION DATE -->
-        <div class="mx-4">
+        <div class="mx-2 mx-sm-4">
           {{ data.Expiration.substring(4, 6) }}/{{
             data.Expiration.substring(2, 4)
           }}
@@ -37,7 +37,7 @@ import { PaymentProfile } from '../../../../../../../../functions/src/models';
       </div>
 
       <!-- CARD OWNER -->
-      <div class="px-4 text-end align-middle">
+      <div class="mx-4 text-end align-middle d-none d-sm-block">
         <span class="text-nowrap">{{ data.CardOwner }}</span>
       </div>
 
