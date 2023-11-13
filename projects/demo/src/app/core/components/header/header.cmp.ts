@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
     <header class="navbar bg-dark text-light" data-bs-theme="dark">
       <div class="container">
         <div class="navbar-brand fs-1 fw-bold">Cool Stuff Store</div>
+        <button class="btn btn-outline-light">View Cart</button>
       </div>
     </header>
   `,
