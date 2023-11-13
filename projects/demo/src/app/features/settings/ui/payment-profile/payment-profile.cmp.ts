@@ -7,33 +7,41 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { PaymentProfile } from '../../../../../../../../functions/src/models';
 
 @Component({
   selector: 'payment-profile',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="w-100 d-flex justify-content-between align-items-center">
       <div class="d-flex align-items-center">
-        @switch (data.Brand) { @case ('MasterCard') {
-        <img class="card-brand" src="assets/mastercard-logo.svg" />
-        } @case ('VISA') {
-        <img class="card-brand" src="assets/visa-logo.svg" />
-        } @default {
-        <span>{{ data.Brand }}</span>
-        } }
-        <span class="ms-2"> ●●●● ●●●● ●●●● {{ data.Last4 }} </span>
+        <!-- CARD ICON -->
+        @switch (data.Brand) {
+        <!-- MASTERCARD -->
+        @case ('MasterCard') {<img class="card-brand" [src]="icons.mc" />}
+        <!-- VISA -->
+        @case ('VISA') { <img class="card-brand" [src]="icons.visa" /> }
+        <!-- DEFAULT -->
+        @default { <span>{{ data.Brand }}</span> } }
+
+        <!-- CARD LAST 4 -->
+        <span class="mx-2 text-nowrap"> ●●●● ●●●● ●●●● {{ data.Last4 }} </span>
+
+        <!-- CARD EXPIRATION DATE -->
+        <div class="mx-4">
+          {{ data.Expiration.substring(4, 6) }}/{{
+            data.Expiration.substring(2, 4)
+          }}
+        </div>
       </div>
-      <div>
-        {{ data.Expiration.substring(4, 6) }}/{{
-          data.Expiration.substring(2, 4)
-        }}
+
+      <!-- CARD OWNER -->
+      <div class="px-4 text-end align-middle">
+        <span class="text-nowrap">{{ data.CardOwner }}</span>
       </div>
-      <div class="px-4" style="vertical-align: middle;">
-        <span>{{ data.CardOwner }}</span>
-      </div>
+
+      <!-- DELETE BUTTON -->
       <button class="btn btn-danger" (click)="delete.emit()">
         <i class="bi bi-trash"></i>
       </button>
@@ -58,6 +66,11 @@ export class PaymentProfileCmp {
   @Input({ required: true }) data!: PaymentProfile;
   @Output() delete = new EventEmitter<void>();
   @ViewChild('dialog') dialog?: ElementRef<HTMLDialogElement>;
+
+  icons = {
+    mc: 'assets/mastercard-logo.svg',
+    visa: 'assets/visa-logo.svg',
+  };
 
   openDeleteDialog() {
     this.dialog?.nativeElement.showModal();

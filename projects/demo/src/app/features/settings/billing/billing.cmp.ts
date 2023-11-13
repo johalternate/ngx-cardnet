@@ -8,16 +8,16 @@ import {
   signal,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { CommonModule } from '@angular/common';
 import { BillingDataService } from '../../../core/data-access/billing.service';
 import { PaymentProfileCmp } from '../ui/payment-profile/payment-profile.cmp';
 import { PaymentProfile } from '../../../../../../../functions/src/models';
 import { CaptureButton } from '../../../../../../ngx-cardnet/src/public-api';
+import { PaymentProfilePlaceholderCmp } from '../ui/payment-profile-placeholder/payment-profile-placeholder.cmp';
 
 @Component({
   selector: 'billing-settings',
   standalone: true,
-  imports: [CommonModule, PaymentProfileCmp, CaptureButton],
+  imports: [PaymentProfileCmp, PaymentProfilePlaceholderCmp, CaptureButton],
   template: `
     <div class="mt-4 d-flex justify-content-between align-items-center">
       <div>
@@ -39,15 +39,28 @@ import { CaptureButton } from '../../../../../../ngx-cardnet/src/public-api';
     </div>
     <hr />
     <div class="accordion accordion-flush" id="card-list">
-      @defer (when profiles()) { @for (profile of profiles(); track $index) {
+      @defer (when profiles()) {
+      <!---->
+      @for (profile of profiles(); track $index) {
       <div class="p-4">
         <payment-profile
           [data]="profile"
           (delete)="deletePaymentProfile(profile)"
         />
       </div>
-      } } @placeholder (minimum 5000ms) {
-      <h1>LOADING</h1>
+      }
+      <!---->
+      } @placeholder (minimum 1000ms) {
+      <div class="text-center" style=" padding: 2em">
+        <p class="fs-2 text-body-secondary">Loading</p>
+        <div
+          class="spinner-border"
+          style="width: 3rem; height: 3rem;"
+          role="status"
+        >
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
       }
     </div>
   `,
